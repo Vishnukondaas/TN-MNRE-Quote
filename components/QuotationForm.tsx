@@ -14,11 +14,8 @@ interface Props {
 
 const QuotationForm: React.FC<Props> = ({ state, currentUser, editData, onSave, onSaveTemplate, onCancel }) => {
   const generateNewId = () => {
-    const now = new Date();
-    const dd = now.getDate().toString().padStart(2, '0');
-    const yy = now.getFullYear().toString().slice(-2);
-    // Updated prefix from KLMNRE to TNMNRE
-    return `TNMNRE-${state.nextId}/${dd}-${yy}`;
+    // Updated as per user request to start from TNMNRE1506
+    return `TNMNRE${state.nextId}`;
   };
 
   const [formData, setFormData] = useState<Quotation>({

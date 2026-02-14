@@ -96,7 +96,7 @@ export const INITIAL_STATE: AppState = {
   ],
   users: DEFAULT_USERS,
   quotations: [],
-  nextId: 1000
+  nextId: 1506
 };
 
 // --- SUPABASE API FUNCTIONS ---
@@ -129,9 +129,11 @@ export const fetchFullState = async (): Promise<AppState> => {
     }
 
     // Determine nextId based on existing quotations
-    let maxId = 1000;
+    // Base starting point updated to 1505 so next is 1506
+    let maxId = 1505;
     quotations.forEach(q => {
-      const match = q.id.match(/(?:KAPL|KLMNRE|TNMNRE)-(\d+)/); 
+      // Updated regex to handle optional hyphen for the new TNMNRE1506 format
+      const match = q.id.match(/(?:KAPL|KLMNRE|TNMNRE)-?(\d+)/); 
       if (match && match[1]) {
         const num = parseInt(match[1]);
         if (num > maxId) maxId = num;
